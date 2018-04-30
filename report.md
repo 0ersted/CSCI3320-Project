@@ -13,6 +13,8 @@ Numer of trainers:  93
 #### 3.1.1 Logistic Regression
 
 #### 3.1.2 Naïve Bayes
+Here we Choose **GaussionNB** classifier using Gaussian distribution to estimate the likelihood. The reason we choose it is that first we assume each feature holds Gaussian distribution. Also, we have some features in real value(continuous case).
+
 
 #### 3.1.3 SVM
 
@@ -21,6 +23,17 @@ Numer of trainers:  93
 ### 3.3 Evaluation of Predictions
 
 ### 3.4 Writing A Report
+* **Q**: What are the characteristics of each of the four classifiers?
+  **A**: 
+
+* **Q**: Different classification models can be used in different scenarios. How do you choose classification models for different classification problems? Please provide some examples.
+  **A**:
+
+* **Q**: How do the cross validation techniques help in avoiding overfitting?
+  **A**:
+
+* **Q**:How do you choose evaluation metrics for imbalanced datasets according to the class distribution? Please give your understanding and provide some examples.
+  **A**:
 
 ## 4 Regression
 ### 4.1 Training Regression Model in Scikit-Learn
