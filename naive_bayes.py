@@ -1,8 +1,8 @@
+import numpy as np
 
 class NaiveBayes():
 
     def __init__(self):
-        import numpy as np
         self.X = None
         self.y = None
         self.classes = None
@@ -10,12 +10,9 @@ class NaiveBayes():
 
 
     def fit(self, X, y):
-        print('go')
         self.X = X
         self.y = y
-        print('before')
         self.classes = np.unique(self.y)
-        print('after')
         self.parameter = {}
         for i, c in enumerate(self.classes):
             X_c = np.array([ self.X[i] for i, yy in enumerate(self.y) if yy==c ])
