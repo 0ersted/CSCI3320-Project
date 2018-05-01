@@ -84,6 +84,7 @@ result.
 A:  After normalized and adjusting the parameters (for SVR: C=0.2, epsilon=0.1; for GBRT: loss='ls',learning_rate=0.012,n_estimators=1000,max_depth=1; we got the parameters by corss-validation), the RMSE, Top_1,Top3,Average_Rank become:
    SVR Model after normalization: RMSE =  1.7290500693496353 ; Top_1 =  0.1600831600831601 ; Top_3 =  0.38461538461538464 ; Average_Rank =  5.615384615384615
    Gradient Boosting Regression Tree Model after normalization: RMSE =  1.7519266975943029 ; Top_1 =  0.37422037422037424 ; Top_3 =  0.6361746361746362 ; Average_Rank =  3.501039501039501
+   The Result improved after normalization
 
 ##  5 Betting Strategy
 
