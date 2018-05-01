@@ -10,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 from collections import Counter
 import time
+import csv
 
 class Classification():
 
@@ -97,6 +98,25 @@ class Classification():
             win_odds_test, race_distance_test))
         self.y_test = df_test.finishing_position
 
+        self.headers=['RaceID','HorseID','HorseWin','HorseRankTop3','HorseRankTop50Percent']
+
+        #get actual results from y_valid
+        horse_win_actual=np.zeros((len(self.y_valid),1))
+        horse_top3_actual=np.zeros((len(self.y_valid),1))
+        horse_top50percent_actual=np.zeros((len(self.y_valid),1))
+        count_of_race_participation=Counter(df_valid.race_id)
+        for i in range(len(self.y_valid)):
+            if self.y_valid[i]==1:
+                 horse_win_actual[i]=1
+            if self.y_valid[i]<=3:
+                 horse_top3_actual[i]=1
+            if self.y_valid[i]<=np.floor(count_of_race_participation[df_valid.race_id[i]]/2):
+                 horse_top50percent_actual[i]=1
+
+        self.horse_win_actual = horse_win_actual 
+        self.horse_top3_actual = horse_top3_actual 
+        self.horse_top50percent_actual = horse_top50percent_actual 
+
 
     def logistic(self):
         # we get the good parameter by following code commented
@@ -120,6 +140,32 @@ class Classification():
         print('Score of linear regression:', lr_model.score(self.X_valid, self.y_valid))
         self.lr_y_pred = lr_model.predict(self.X_test)
         
+        # get predict
+        df_test = pd.read_csv('data/testing.csv')
+        lr_result = self.lr_y_pred
+        horse_win_lr=np.zeros((len(lr_result),1))
+        horse_top3_lr=np.zeros((len(lr_result),1))
+        horse_top50percent_lr=np.zeros((len(lr_result),1))
+        count_of_race_participation=Counter(df_test.race_id)
+        for i in range(len(lr_result)):
+            if lr_result[i] == 1:
+                 horse_win_lr[i]=1
+            if lr_result[i] <= 3:
+                 horse_top3_lr[i] = 1
+            if lr_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
+                 horse_top50percent_lr[i] = 1
+        with open('data/lr_predictions.csv','w') as f1:
+             lr_csv=csv.writer(f1)
+             lr_csv.writerow(self.headers)
+             for i in range(len(lr_result)):
+                 lr_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_lr[i][0],horse_top3_lr[i][0],horse_top50percent_lr[i][0]])
+
+        self.evaluation(horse_win_lr, horse_top3_lr, 
+                horse_top50percent_lr, 'logistic')
+
+
+
+
 
     def naiveBayes(self):
         start_time = time.time()
@@ -130,11 +176,53 @@ class Classification():
         print('Score of Naive Bayes:', nb_score)
         self.nb_y_pred = nb_model.predict(self.X_test)
 
+        df_test = pd.read_csv('data/testing.csv')
+        nb_result = self.nb_y_pred
+        horse_win_nb=np.zeros((len(nb_result),1))
+        horse_top3_nb=np.zeros((len(nb_result),1))
+        horse_top50percent_nb=np.zeros((len(nb_result),1))
+        count_of_race_participation=Counter(df_test.race_id)
+        for i in range(len(nb_result)):
+            if nb_result[i] == 1:
+                horse_win_nb[i]=1
+            if nb_result[i] <= 3:
+                horse_top3_nb[i] = 1
+            if nb_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
+                horse_top50percent_nb[i] = 1
+        with open('data/nb_predictions.csv','w') as f2:
+             nb_csv=csv.writer(f2)
+             nb_csv.writerow(self.headers)
+             for i in range(len(nb_result)):
+                 nb_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_nb[i][0],horse_top3_nb[i][0],horse_top50percent_nb[i][0]])
+
+        self.evaluation(horse_win_nb, horse_top3_nb, 
+                horse_top50percent_nb, 'Naive Bayes')
 
     # TODO
     def supportVector(self):
         self.svm_y_pred = self.y_test
 
+        df_test = pd.read_csv('data/testing.csv')
+        svm_result = self.svm_y_pred
+        horse_win_svm=np.zeros((len(svm_result),1))
+        horse_top3_svm=np.zeros((len(svm_result),1))
+        horse_top50percent_svm=np.zeros((len(svm_result),1))
+        count_of_race_participation=Counter(df_test.race_id)
+        for i in range(len(svm_result)):
+            if svm_result[i] == 1:
+                horse_win_svm[i]=1
+            if svm_result[i] <= 3:
+                horse_top3_svm[i] = 1
+            if svm_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
+                horse_top50percent_svm[i] = 1
+        with open('data/svm_predictions.csv','w') as f3:
+            svm_csv=csv.writer(f3)
+            svm_csv.writerow(self.headers)
+            for i in range(len(svm_result)):
+                svm_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_svm[i][0],horse_top3_svm[i][0],horse_top50percent_svm[i][0]])
+
+        self.evaluation(horse_win_svm, horse_top3_svm, 
+                horse_top50percent_svm, 'SVM')
 
     def randomForest(self):
         # we get the good parameter by following code commented
@@ -162,73 +250,7 @@ class Classification():
             self.y_valid))
         self.rf_y_pred = rf_model.predict(self.X_test)
 
-
-    def getPrediction(self):
         df_test = pd.read_csv('data/testing.csv')
-        #The lr matrix
-        self.logistic()
-        lr_result = self.lr_y_pred
-        horse_win_lr=np.zeros((len(lr_result),1))
-        horse_top3_lr=np.zeros((len(lr_result),1))
-        horse_top50percent_lr=np.zeros((len(lr_result),1))
-        count_of_race_participation=Counter(df_test.race_id)
-        for i in range(len(lr_result)):
-            if lr_result[i] == 1:
-                 horse_win_lr[i]=1
-            if lr_result[i] <= 3:
-                 horse_top3_lr[i] = 1
-            if lr_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
-                 horse_top50percent_lr[i] = 1
-        headers=['RaceID','HorseID','HorseWin','HorseRankTop3','HorseRankTop50Percent']
-        import csv
-        with open('data/lr_predictions.csv','w') as f1:
-             lr_csv=csv.writer(f1)
-             lr_csv.writerow(headers)
-             for i in range(len(lr_result)):
-                 lr_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_lr[i][0],horse_top3_lr[i][0],horse_top50percent_lr[i][0]])
-
-        #the naive bayesian matrix
-        self.naiveBayes()
-        nb_result = self.nb_y_pred
-        horse_win_nb=np.zeros((len(nb_result),1))
-        horse_top3_nb=np.zeros((len(nb_result),1))
-        horse_top50percent_nb=np.zeros((len(nb_result),1))
-        count_of_race_participation=Counter(df_test.race_id)
-        for i in range(len(nb_result)):
-            if nb_result[i] == 1:
-                horse_win_nb[i]=1
-            if nb_result[i] <= 3:
-                horse_top3_nb[i] = 1
-            if nb_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
-                horse_top50percent_nb[i] = 1
-        with open('data/nb_predictions.csv','w') as f2:
-             nb_csv=csv.writer(f2)
-             nb_csv.writerow(headers)
-             for i in range(len(nb_result)):
-                 nb_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_nb[i][0],horse_top3_nb[i][0],horse_top50percent_nb[i][0]])
-
-        #the svm matrix
-        self.supportVector()
-        svm_result = self.svm_y_pred
-        horse_win_svm=np.zeros((len(svm_result),1))
-        horse_top3_svm=np.zeros((len(svm_result),1))
-        horse_top50percent_svm=np.zeros((len(svm_result),1))
-        count_of_race_participation=Counter(df_test.race_id)
-        for i in range(len(svm_result)):
-            if svm_result[i] == 1:
-                horse_win_svm[i]=1
-            if svm_result[i] <= 3:
-                horse_top3_svm[i] = 1
-            if svm_result[i]<= np.floor(count_of_race_participation[df_test.race_id[i]]/2):
-                horse_top50percent_svm[i] = 1
-        with open('data/svm_predictions.csv','w') as f3:
-            svm_csv=csv.writer(f3)
-            svm_csv.writerow(headers)
-            for i in range(len(svm_result)):
-                svm_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_svm[i][0],horse_top3_svm[i][0],horse_top50percent_svm[i][0]])
-
-        #the rf matrix
-        sefl.randomForest()
         rf_result = self.rf_y_pred
         horse_win_rf=np.zeros((len(rf_result),1))
         horse_top3_rf=np.zeros((len(rf_result),1))
@@ -243,21 +265,60 @@ class Classification():
                 horse_top50percent_rf[i] = 1
         with open('data/rf_predictions.csv','w') as f4:
             rf_csv=csv.writer(f4)
-            rf_csv.writerow(headers)
+            rf_csv.writerow(self.headers)
             for i in range(len(rf_result)):
                 rf_csv.writerow([df_test.race_id[i],df_test.horse_id[i],horse_win_rf[i][0],horse_top3_rf[i][0],horse_top50percent_rf[i][0]])
-        return
+    
+        self.evaluation(horse_win_rf, horse_top3_rf, 
+                horse_top50percent_rf, 'random forest')
 
-    def evaluation(self):
-        return
+
+    def evaluation(self, win, top3, top50percent, model):
+        TP=0;FP=0;FN=0;TN=0
+        for i in range(len(self.X_valid)):
+            if (win[i]==1 and self.horse_win_actual[i]==1):
+                TP=TP+1
+            if (win[i]==1 and self.horse_win_actual[i]==0):
+                FP=FP+1
+            if (win[i]==0 and self.horse_win_actual[i]==1):
+                FN=FN+1
+            if (win[i]==0 and self.horse_win_actual[i]==0):
+                TN=TN+1
+        print('Recall of '+ model +' model horse_win prediction= ', TP/(TP+FN))
+        print('Precision of '+model+' model horse_win prediction= ', TP/(TP+FP))
+        TP=0;FP=0;FN=0;TN=0
+        for i in range(len(self.X_valid)):
+            if (top3[i]==1 and self.horse_top3_actual[i]==1):
+                TP=TP+1
+            if (top3[i]==1 and self.horse_top3_actual[i]==0):
+                FP=FP+1
+            if (top3[i]==0 and self.horse_top3_actual[i]==1):
+                FN=FN+1
+            if (top3[i]==0 and self.horse_top3_actual[i]==0):
+                TN=TN+1
+        print('Recall of '+model+' model horse_top3 prediction= ', TP/(TP+FN))
+        print('Precision of '+model+' model horse_top3 prediction= ', TP/(TP+FP))
+        TP=0;FP=0;FN=0;TN=0
+        for i in range(len(self.X_valid)):
+            if (top50percent[i]==1 and self.horse_top50percent_actual[i]==1):
+                TP=TP+1
+            if (top50percent[i]==1 and self.horse_top50percent_actual[i]==0):
+                FP=FP+1
+            if (top50percent[i]==0 and self.horse_top50percent_actual[i]==1):
+                FN=FN+1
+            if (top50percent[i]==0 and self.horse_top50percent_actual[i]==0):
+                TN=TN+1
+        print('Recall of '+model+' model horse_top50percent prediction= ', TP/(TP+FN))
+        print('Precision of '+model+' model horse_top50percent prediction= ', TP/(TP+FP), '\n')
+
 
 if __name__=='__main__':
     clf = Classification()
-    # clf.logistic()
-    # clf.naiveBayes()
+    clf.logistic()
+    clf.naiveBayes()
 #     clf.supportVector()
-    # clf.randomForest()
-    clf.getPrediction()
+    clf.randomForest()
+    # clf.getPrediction()
 #     clf.evaluation()
 
         
