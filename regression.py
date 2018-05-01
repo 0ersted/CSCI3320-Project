@@ -38,7 +38,7 @@ m_train, _ = np.shape(df_train)
 m_test, _ = np.shape(df_test)
 #4.1.1
 from sklearn.svm import SVR
-svr_model=SVR(C=27,epsilon=0.2)
+svr_model=SVR(C=27,epsilon=0.2,kernel='rbf')
 svr_model.fit(X_train,y_train)
 svr_result=svr_model.predict(X_test)
 svr_score=svr_model.score(X_test,y_test)
@@ -128,7 +128,7 @@ ave_rank=sum_of_actual_rank/count_of_1
 print("Gradient Boosting Regression Tree Model before normalization: RMSE = ",root_mean_squared_error_GBRT,"; Top_1 = ",Top_1,"; Top_3 = ",Top_3,"; Average_Rank = ",ave_rank)
 #normalized cases
 #normalized svr
-svr_normalized_model=SVR(C=20,epsilon=0.1)
+svr_normalized_model=SVR(C=20,epsilon=0.1,kernel='rbf')
 svr_normalized_model.fit(X_train_normalized,y_train_normalized)
 svr_normalized_result=svr_normalized_model.predict(X_test_normalized)
 svr_normalized_score=svr_normalized_model.score(X_test_normalized,y_test_normalized)
