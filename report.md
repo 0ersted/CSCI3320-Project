@@ -11,14 +11,48 @@ Numer of trainers:  93
 ## 3 Classification
 ### 3.1 Training Classifiers in Scikit-Learn
 #### 3.1.1 Logistic Regression
+Training time of linear regression: 1.352653980255127 secends
+Score of linear regression: 0.1304810557684121
+Recall of logistic model horse_win prediction=  0.3713527851458886
+Precision of logistic model horse_win prediction=  0.07954545454545454
+Recall of logistic model horse_top3 prediction=  0.526595744680851
+Precision of logistic model horse_top3 prediction=  0.23468984591070724
+Recall of logistic model horse_top50percent prediction=  0.6458604247941049
+Precision of logistic model horse_top50percent prediction=  0.48220064724919093 
 
 #### 3.1.2 Naïve Bayes
 Here we choose **GaussionNB** classifier using Gaussian distribution to estimate the likelihood. The reason we choose it is that first we assume each feature holds Gaussian distribution. Also, we have some features in real value(continuous case).
 
+Training time of Naive Bayes: 0.009907960891723633 secends
+Score of Naive Bayes: 0.12021113570577217
+Recall of Naive Bayes model horse_win prediction=  0.27586206896551724
+Precision of Naive Bayes model horse_win prediction=  0.0851063829787234
+Recall of Naive Bayes model horse_top3 prediction=  0.47606382978723405
+Precision of Naive Bayes model horse_top3 prediction=  0.23357981731187472
+Recall of Naive Bayes model horse_top50percent prediction=  0.6814044213263979
+Precision of Naive Bayes model horse_top50percent prediction=  0.48117539026629935 
 
 #### 3.1.3 SVM
 
+Training time of SVM: 22.16796588897705 secends
+Score of SVM: 0.08428401157840967
+Recall of SVM model horse_win prediction=  0.01856763925729443
+Precision of SVM model horse_win prediction=  0.0707070707070707
+Recall of SVM model horse_top3 prediction=  0.061170212765957445
+Precision of SVM model horse_top3 prediction=  0.23469387755102042
+Recall of SVM model horse_top50percent prediction=  0.44690073688773296
+Precision of SVM model horse_top50percent prediction=  0.48358348968105064 
+
 #### 3.1.4 Random Forest
+
+Training time of random forest: 0.5264508724212646 secends
+Score of random forest: 0.13686675180928054
+Recall of random forest model horse_win prediction=  0.16976127320954906
+Precision of random forest model horse_win prediction=  0.07158836689038031
+Recall of random forest model horse_top3 prediction=  0.2774822695035461
+Precision of random forest model horse_top3 prediction=  0.22405153901216893
+Recall of random forest model horse_top50percent prediction=  0.5400953619419159
+Precision of random forest model horse_top50percent prediction=  0.4808954071786955 
 
 ### 3.3 Evaluation of Predictions
 
