@@ -87,7 +87,11 @@ A:  After normalized and adjusting the parameters (for SVR: C=0.2, epsilon=0.1; 
    The Result improved after normalization
 
 ##  5 Betting Strategy
-
+We import the classification result of logistic classifier from part3 (classification.py) since the logistic regression classifier performed well (according to the analysis in part3), for each race we choose the horse whose predicted rank is the smallest, if there are 2 horses whose predicted rank are the same, we randomly choose one. We calculated the money we win and number of times we win when betting the races in df_valid (totoally 378 races), the result is :
+    Totoally  378  races
+    money win:  1352.3999999999999
+    We win  140  times
+    We think this strategy is good since the money we gain is positive and in over 1/3 races we could win
 
 ## 6 Visualization
 ### 6.1 Line Chart of Recent Racing Result

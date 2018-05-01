@@ -21,6 +21,7 @@ raceid=list()
 for i in range(len(df_valid)):
     if df_valid.race_id[i] not in raceid:
         raceid.append(df_valid.race_id[i])
+print("Totoally ", len(raceid)," races")
 bet=list()
 for i in range(len(raceid)):
     index=list()
