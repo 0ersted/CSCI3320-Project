@@ -52,10 +52,38 @@ Here we choose **GaussionNB** classifier using Gaussian distribution to estimate
 ## 4 Regression
 ### 4.1 Training Regression Model in Scikit-Learn
 #### 4.1.1 Support Vector Regression Model(SVR)
+Q: First, SVR accepts different kernel functions. They could
+be one of linear, poly, rbf, sigmoid, precomputed, select one of them and state your reason in
+prjreport.pdf. Second, epsilon and C are two critical parameters.Please state what role do they
+play in the model, what value do you assign and why do you select these values
+A: We selected rbf kernel since linear and poly could underfit, and when other parameters keep unchanged, the rbf kernel performs the best. 
+   Epsilon is the margin of tolerance, the data within the region of tolerance would be neglected, so when epsilon is larger, the tolerance region would be larger, more data would be neglected, the accuracy of model tend to be lower, number of support vectors would be lower; When epsilon is lower, more of the data errors would be considered, but overfitting is more likely to happen.
+   C is the cost, it represents the tolerance of error, when C is larger, the tolerance of error would be smaller, overfitting is more likely to happen; when C is smaller, tolerance of error would be larger, larger margin could be obtained, underfitting is more likely to happen; generally when number of noise points is large, C need to be smaller.
+  I assigned 0.2 to epsilon and 27 to C since by cross-validation, I found that the model performs the best when epsilon=0.2 and C=27
 
 #### 4.1.2 Gradient Boosting Regression Tree Model(GBRT)
+Q: First, GradientBoostingRegressor accepts different loss
+functions. They could be one of ls, lad, huber, quantile, select one of them and state your reason
+in prjreport.pdf. Second, learning_rate, n_estimators and max_depth are three critical parameters.
+Please state what role do they play in the model, what value do you assign and why do you select
+these values
+A: We selected huber as the loss function since when other parameters keep unchanged, the model would perform the best when "huber" is chosen to be the loss function. 
+   Learning_rate is the learning rate of the procedure, a small learning rate generally lead to a better generalization error. 
+   n_estimators is the number of boosting stages, usually when n_estimators is larger, the model performs better, and it's quite robust to over-fitting. 
+   When learning_rate is small, a larger n_estimators is needed to ensure that the model is well-trained, but when n_estimator is larger, the time cost will be larger, so there is a trade-off. 
+   Our strategy is to first set a large value for n_estimator, then tune the learning rate to achieve the best results. We got learning_rate=0.05, n_estimators=300
 
 ### 4.2 Predicting on Test Data
+Q: Record your best result in the form (model_name, RMSE, Top_1, Top_3, Average_Rank) for both
+SVR and GBRT model. Here, you are required to save your best result together with chosen parameters
+
+A: SVR Model before normalization : RMSE =  19.104978238752828 ; Top_1 =  0.06860706860706861 ; Top_3 =  0.23492723492723494 ; Average_Rank =  6.704781704781705
+   Gradient Boosting Regression Tree Model before normalization: RMSE =  32.699628017762414 ; Top_1 =  0.2494802494802495 ; Top_3 =  0.5550935550935551 ; Average_Rank =  3.9875259875259874
+Q: Please try to normalize them and retrain your model to show whether normalizaiton improves the
+result.
+A:  After normalized and adjusting the parameters (for SVR: C=0.2, epsilon=0.1; for GBRT: loss='ls',learning_rate=0.012,n_estimators=1000,max_depth=1; we got the parameters by corss-validation), the RMSE, Top_1,Top3,Average_Rank become:
+   SVR Model after normalization: RMSE =  1.7290500693496353 ; Top_1 =  0.1600831600831601 ; Top_3 =  0.38461538461538464 ; Average_Rank =  5.615384615384615
+   Gradient Boosting Regression Tree Model after normalization: RMSE =  1.7519266975943029 ; Top_1 =  0.37422037422037424 ; Top_3 =  0.6361746361746362 ; Average_Rank =  3.501039501039501
 
 ##  5 Betting Strategy
 
