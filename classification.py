@@ -200,9 +200,15 @@ class Classification():
 
     # TODO
     def supportVector(self):
-        self.svm_y_pred = self.y_test
-
+        start_time = time.time()
+        svm_model=SVC(kernel='rbf',random_state=0,gamma=0.005,C=0.7)
+        svm_model.fit(self.X_train, self.y_train)
+        
+        print('Training time of SVM:', time.time()-start_time, 'secends')
         df_test = pd.read_csv('data/testing.csv')
+        svm_score=svm_model.score(self.X_test, self.y_test)
+        print('Score of SVM:', svm_score)
+        self.svm_y_pred = svm_model.predict(self.X_test)
         svm_result = self.svm_y_pred
         horse_win_svm=np.zeros((len(svm_result),1))
         horse_top3_svm=np.zeros((len(svm_result),1))
@@ -316,9 +322,9 @@ if __name__=='__main__':
     clf = Classification()
     clf.logistic()
     clf.naiveBayes()
-#     clf.supportVector()
+    clf.supportVector()
     clf.randomForest()
-    # clf.getPrediction()
-#     clf.evaluation()
+#clf.getPrediction()
+#clf.evaluation()
 
         
