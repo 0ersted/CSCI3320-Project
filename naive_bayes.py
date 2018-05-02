@@ -30,15 +30,15 @@ class NaiveBayes():
         mu = self.parameter[c][1]
         sigma = self.parameter[c][2]
         nu = np.exp(-(X - mu) ** 2 / (2 * sigma))
-        de = np.sqrt(2 * np.pi * sigma)
+        de = np.sqrt(2 * np.pi * sigma)+ 1e-5
         return np.sum(np.log( nu/de ), axis=1)
         
 
 if __name__=='__main__':
-    import numpy as np
-    x= np.array([[-3,7],[1,5], [1,2], [-2,0], [2,3], [-4,0], [-1,1], [1,1], [-2,2], [2,7], [-4,1], [-2,7]])
-    y = np.array([3, 3, 3, 3, 4, 3, 3, 4, 3, 4, 4, 4])
+    from classification import Classification
+
+    clf = Classification()
     mm = NaiveBayes()
-    mm.fit(x, y)
-    print(mm.predict(x))
+    mm.fit(clf.X_train, clf.y_train)
+    print(mm.predict(clf.X_test))
 

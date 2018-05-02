@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>report</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/zihaosang/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="csci3320-project-report">CSCI3320 PROJECT REPORT</h1>
+
+<h2 class="mume-header" id="2-the-dataset-and-pre-processing">2 The dataset and pre-processing</h2>
+
+<h3 class="mume-header" id="22-data-preprocessing">2.2 Data preprocessing</h3>
+
+<h4 class="mume-header" id="223-indices-and-features-for-horses-jockeys-and-trainers">2.2.3 Indices and features for horses, jockeys and trainers</h4>
+
+<p>Numer of horses:  2155<br>
+Numer of jockeys:  105<br>
+Numer of trainers:  93</p>
+<h2 class="mume-header" id="3-classification">3 Classification</h2>
+
+<h3 class="mume-header" id="31-training-classifiers-in-scikit-learn">3.1 Training Classifiers in Scikit-Learn</h3>
+
+<h4 class="mume-header" id="311-logistic-regression">3.1.1 Logistic Regression</h4>
+
+<p>Training time of linear regression: 1.352653980255127 secends<br>
+Score of linear regression: 0.1304810557684121<br>
+Recall of logistic model horse_win prediction=  0.3713527851458886<br>
+Precision of logistic model horse_win prediction=  0.07954545454545454<br>
+Recall of logistic model horse_top3 prediction=  0.526595744680851<br>
+Precision of logistic model horse_top3 prediction=  0.23468984591070724<br>
+Recall of logistic model horse_top50percent prediction=  0.6458604247941049<br>
+Precision of logistic model horse_top50percent prediction=  0.48220064724919093</p>
+<h4 class="mume-header" id="312-na%C3%AFve-bayes">3.1.2 Naïve Bayes</h4>
+
+<p>Here we choose <strong>GaussionNB</strong> classifier using Gaussian distribution to estimate the likelihood. The reason we choose it is that first we assume each feature holds Gaussian distribution. Also, we have some features in real value(continuous case).</p>
+<p>Our own Bayesian runs slower than the Bayesian in sklearn, the result and performance of our own Bayesian is generally the same as the Bayesian in sk-learn.</p>
+<p>Training time of Naive Bayes: 0.009907960891723633 secends<br>
+Score of Naive Bayes: 0.12021113570577217<br>
+Recall of Naive Bayes model horse_win prediction=  0.27586206896551724<br>
+Precision of Naive Bayes model horse_win prediction=  0.0851063829787234<br>
+Recall of Naive Bayes model horse_top3 prediction=  0.47606382978723405<br>
+Precision of Naive Bayes model horse_top3 prediction=  0.23357981731187472<br>
+Recall of Naive Bayes model horse_top50percent prediction=  0.6814044213263979<br>
+Precision of Naive Bayes model horse_top50percent prediction=  0.48117539026629935</p>
+<h4 class="mume-header" id="313-svm">3.1.3 SVM</h4>
+
+<p>Training time of SVM: 22.16796588897705 secends<br>
+Score of SVM: 0.08428401157840967<br>
+Recall of SVM model horse_win prediction=  0.01856763925729443<br>
+Precision of SVM model horse_win prediction=  0.0707070707070707<br>
+Recall of SVM model horse_top3 prediction=  0.061170212765957445<br>
+Precision of SVM model horse_top3 prediction=  0.23469387755102042<br>
+Recall of SVM model horse_top50percent prediction=  0.44690073688773296<br>
+Precision of SVM model horse_top50percent prediction=  0.48358348968105064</p>
+<h4 class="mume-header" id="314-random-forest">3.1.4 Random Forest</h4>
+
+<p>Training time of random forest: 0.5264508724212646 secends<br>
+Score of random forest: 0.13686675180928054<br>
+Recall of random forest model horse_win prediction=  0.16976127320954906<br>
+Precision of random forest model horse_win prediction=  0.07158836689038031<br>
+Recall of random forest model horse_top3 prediction=  0.2774822695035461<br>
+Precision of random forest model horse_top3 prediction=  0.22405153901216893<br>
+Recall of random forest model horse_top50percent prediction=  0.5400953619419159<br>
+Precision of random forest model horse_top50percent prediction=  0.4808954071786955</p>
+<h3 class="mume-header" id="33-evaluation-of-predictions">3.3 Evaluation of Predictions</h3>
+
+<h3 class="mume-header" id="34-writing-a-report">3.4 Writing A Report</h3>
+
+<ul>
+<li>
+<p><strong>Q</strong>: What are the characteristics of each of the four classifiers?<br>
+<strong>A</strong>: We analize each chasifiers one by one.</p>
+<ul>
+<li>
+<p><strong>Logistic Regression</strong>: It is easy and fast. And it works reletively good when we have a large amount of data. It don't need to consider any assumption among samples.</p>
+</li>
+<li>
+<p><strong>Naïve Bayes</strong>: Naïve Bayes is the fastest classifier in these four. It is really simple to implement. However, the probability assumptions that the features are independent may not hold in reality. If the somes features are dependent, the classifier may not work so well.</p>
+</li>
+<li>
+<p><strong>SVM</strong>: The classifier really depends on a good kernel function. It is tedious and costy to choose a good one but is expected to work well if a good kernel is found. And the training process is very long because we need a huge amount of computation.</p>
+</li>
+<li>
+<p><strong>Random Forest</strong>: It is a kind of ensemble learning taking the advantages of decision tree. It is easy to explain and has a good performance as well as low risk of overfitting as it generates each decision tree on random.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Q</strong>: Different classification models can be used in different scenarios. How do you choose classification models for different classification problems? Please provide some examples.<br>
+<strong>A</strong>:</p>
+<ul>
+<li>
+<p><strong>Logistic Regression</strong>: It is suitable in most scenarios as a base line to evaluate other models.</p>
+</li>
+<li>
+<p><strong>Naïve Bayes</strong>: It is considered when features seem like independent. Online learning is also a good reason so the model can be improved as the number of samples increaces. So it works well in jobs like email spam.</p>
+</li>
+<li>
+<p><strong>SVM</strong>: It works well when the sample set and feature set  are not too large so the training time wouldn't be too long. If we have a good kernel, SVM usually performs well.</p>
+</li>
+<li>
+<p><strong>Random Forest</strong>: We can consider random forest when number of features are not too huge and we want reasonable good results. It can be tried first without fitting parameters.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Q</strong>: How do the cross validation techniques help in avoiding overfitting?<br>
+<strong>A</strong>: By doing cross validation, we can get a sense on the prediction score and results without touching any testing data. It will help us to find suitable hyper parameters and compare each model.</p>
+</li>
+<li>
+<p><strong>Q</strong>:How do you choose evaluation metrics for imbalanced datasets according to the class distribution? Please give your understanding and provide some examples.<br>
+<strong>A</strong>: &quot;Precision&quot; and &quot;Recall&quot; both see good choice, it depends what do you want. For example, if you want to get more money during betting (that is to say you want your predicted top1 is the real top1, you only care about the top1 horse in each race), precision should be the main consideration.</p>
+</li>
+</ul>
+<h2 class="mume-header" id="4-regression">4 Regression</h2>
+
+<h3 class="mume-header" id="41-training-regression-model-in-scikit-learn">4.1 Training Regression Model in Scikit-Learn</h3>
+
+<h4 class="mume-header" id="411-support-vector-regression-modelsvr">4.1.1 Support Vector Regression Model(SVR)</h4>
+
+<p><strong>Q</strong>: First, SVR accepts different kernel functions. They could be one of linear, poly, rbf, sigmoid, precomputed, select one of them and state your reason in <strong>prjreport.pdf</strong>. Second, epsilon and C are two critical parameters. Please state what role do they play in the model, what value do you assign and why do you select these values.</p>
+<p><strong>A</strong>: We selected rbf kernel since linear and poly could underfit, and when other parameters keep unchanged, the rbf kernel performs the best.</p>
+<p><strong>Epsilon</strong> is the margin of tolerance, the data within the region of tolerance would be neglected, so when epsilon is larger, the tolerance region would be larger, more data would be neglected, the accuracy of model tend to be lower, number of support vectors would be lower; When epsilon is lower, more of the data errors would be considered, but overfitting is more likely to happen.</p>
+<p><strong>C</strong> is the cost, it represents the tolerance of error, when C is larger, the tolerance of error would be smaller, overfitting is more likely to happen; when C is smaller, tolerance of error would be larger, larger margin could be obtained, underfitting is more likely to happen; generally when number of noise points is large, C need to be smaller.</p>
+<p>I assigned 0.2 to <strong>epsilon</strong> and 27 to <strong>C</strong> since by cross-validation. I found that the model performs the best when <strong>epsilon</strong>=0.2 and <strong>C</strong>=27.</p>
+<h4 class="mume-header" id="412-gradient-boosting-regression-tree-modelgbrt">4.1.2 Gradient Boosting Regression Tree Model(GBRT)</h4>
+
+<p><strong>Q</strong>: First, GradientBoostingRegressor accepts different loss functions. They could be one of ls, lad, huber, quantile, select one of them and state your reason in <strong>prjreport.pdf</strong>. Second, learning_rate, n_estimators and max_depth are three critical parameters. Please state what role do they play in the model, what value do you assign and why do you select these values.</p>
+<p><strong>A</strong>: We selected huber as the loss function since when other parameters keep unchanged, the model would perform the best when &quot;huber&quot; is chosen to be the loss function.</p>
+<p>Learning_rate is the learning rate of the procedure, a small learning rate generally lead to a better generalization error.</p>
+<p>n_estimators is the number of boosting stages, usually when n_estimators is larger, the model performs better, and it's quite robust to over-fitting.</p>
+<p>When learning_rate is small, a larger n_estimators is needed to ensure that the model is well-trained, but when n_estimator is larger, the time cost will be larger, so there is a trade-off.</p>
+<p>Our strategy is to first set a large value for n_estimator, then tune the learning rate to achieve the best results. We got learning_rate=0.05, n_estimators=300</p>
+<h3 class="mume-header" id="42-predicting-on-test-data">4.2 Predicting on Test Data</h3>
+
+<p><strong>Q</strong>: Record your best result in the form (model_name, RMSE, Top_1, Top_3, Average_Rank) for both SVR and GBRT model. Here, you are required to save your best result together with chosen parameters.</p>
+<p><strong>A</strong>: SVR Model before normalization :</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code> RMSE =  19.104978238752828;
+ Top_1 =  0.06860706860706861; 
+ Top_3 =  0.23492723492723494; 
+ Average_Rank =  6.704781704781705
+</code></pre><p>Gradient Boosting Regression Tree Model before normalization:</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>RMSE =  32.699628017762414;
+Top_1 =  0.2494802494802495;
+Top_3 =  0.5550935550935551;
+Average_Rank =  3.9875259875259874
+</code></pre><p><strong>Q</strong>: Please try to normalize them and retrain your model to show whether normalizaiton improves the result.</p>
+<p><strong>A</strong>: After normalized and adjusting the parameters<br>
+(for SVR: <code>C=0.2, epsilon=0.1</code><br>
+for GBRT: <code>loss='ls',learning_rate=0.012,n_estimators=1000,max_depth=1</code><br>
+we got the parameters by corss-validation), the RMSE, Top_1,Top3, Average_Rank become:<br>
+SVR Model after normalization:</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>RMSE =  1.7290500693496353;
+Top_1 =  0.1600831600831601; 
+Top_3 =  0.38461538461538464; 
+Average_Rank =  5.615384615384615
+</code></pre><p>Gradient Boosting Regression Tree Model after normalization:</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>RMSE =  1.7519266975943029; 
+Top_1 =  0.37422037422037424;
+Top_3 =  0.6361746361746362;
+Average_Rank =  3.501039501039501
+</code></pre><p>The Result improved after normalization</p>
+<h2 class="mume-header" id="5-betting-strategy">5 Betting Strategy</h2>
+
+<p>We import the classification result of logistic classifier from part3 (<a href="http://classification.py">classification.py</a>) since the logistic regression classifier performed well (according to the analysis in part3), for each race we choose the horse whose predicted rank is the smallest, if there are 2 horses whose predicted rank are the same, we randomly choose one. We calculated the money we win and number of times we win when betting the races in df_valid (totoally 378 races), the result is :</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>    Totoally  378  races
+    money win:  1352.3999999999999
+    We win  140  times
+</code></pre><p>We think this strategy is good since the money we gain is positive and in over 1/3 races we could win.</p>
+<h2 class="mume-header" id="6-visualization">6 Visualization</h2>
+
+<h3 class="mume-header" id="61-line-chart-of-recent-racing-result">6.1 Line Chart of Recent Racing Result</h3>
+
+<p><img src="plot/Figure_1.png?0.9843638603409832" alt=""><br>
+<img src="plot/Figure_2.png?0.3878717439342565" alt=""><br>
+Both horses are not in stable competition status.</p>
+<h3 class="mume-header" id="62-scatter-plot-of-win-rate-and-number-of-wins">6.2 Scatter Plot of Win Rate and Number of Wins</h3>
+
+<p><img src="plot/Figure_3.png?0.3920107846853975" alt=""><br>
+We think the best horse is MAURICE and best jockey is J Moeria because they get both high winning rate and wining number</p>
+<h3 class="mume-header" id="63-pie-chart-of-the-draw-bias-effect">6.3 Pie Chart of the Draw Bias Effect</h3>
+
+<p><img src="plot/Figure_4.png?0.16282863878468246" alt=""><br>
+We can see that low draw has some advantages as it is closer to the final distination.</p>
+<h3 class="mume-header" id="64-bar-chart-of-the-feature-importances">6.4 Bar Chart of the Feature Importances</h3>
+
+<p><img src="plot/Figure_5.png?0.1058315736176565" alt=""></p>
+<p>We find that the three most important features are declared weight, win_odds and the horse.</p>
+<h3 class="mume-header" id="65-visualize-svm">6.5 Visualize SVM</h3>
+
+<p><img src="plot/Figure_6.png?0.8604902407683261" alt=""></p>
+<p>The points are separated good by the SVM, but the chart is not perfect as we only use 2 dimensions.</p>
+
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>

@@ -22,8 +22,6 @@ for name in horse_list:
     horse_plot_info['win_rate'].append(win_rate)
 
 
-
-
 jockey_list = list(set(data['jockey']))
 jockey_dict = {}
 for name in jockey_list:
@@ -61,3 +59,5 @@ plt.title('Good Jockeys')
 for i, name in enumerate(jockey_plot_info['name']):
     if jockey_plot_info['win_rate'][i] >= jockey_threshold:
         plt.annotate(name,( jockey_plot_info['win_rate'][i], jockey_plot_info['win_num'][i]))
+
+plt.show()

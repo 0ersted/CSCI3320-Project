@@ -23,6 +23,8 @@ Precision of logistic model horse_top50percent prediction=  0.48220064724919093
 #### 3.1.2 Naïve Bayes
 Here we choose **GaussionNB** classifier using Gaussian distribution to estimate the likelihood. The reason we choose it is that first we assume each feature holds Gaussian distribution. Also, we have some features in real value(continuous case).
 
+Our own Bayesian runs slower than the Bayesian in sklearn, the result and performance of our own Bayesian is generally the same as the Bayesian in sk-learn.
+
 Training time of Naive Bayes: 0.009907960891723633 secends
 Score of Naive Bayes: 0.12021113570577217
 Recall of Naive Bayes model horse_win prediction=  0.27586206896551724
@@ -81,7 +83,7 @@ Precision of random forest model horse_top50percent prediction=  0.4808954071786
   **A**: By doing cross validation, we can get a sense on the prediction score and results without touching any testing data. It will help us to find suitable hyper parameters and compare each model.
 
 * **Q**:How do you choose evaluation metrics for imbalanced datasets according to the class distribution? Please give your understanding and provide some examples.
-  **A**:  
+  **A**: "Precision" and "Recall" both see good choice, it depends what do you want. For example, if you want to get more money during betting (that is to say you want your predicted top1 is the real top1, you only care about the top1 horse in each race), precision should be the main consideration.
 
 ## 4 Regression
 ### 4.1 Training Regression Model in Scikit-Learn
@@ -151,22 +153,33 @@ The Result improved after normalization
 
 ##  5 Betting Strategy
 We import the classification result of logistic classifier from part3 (classification.py) since the logistic regression classifier performed well (according to the analysis in part3), for each race we choose the horse whose predicted rank is the smallest, if there are 2 horses whose predicted rank are the same, we randomly choose one. We calculated the money we win and number of times we win when betting the races in df_valid (totoally 378 races), the result is :
+```
     Totoally  378  races
     money win:  1352.3999999999999
     We win  140  times
-    We think this strategy is good since the money we gain is positive and in over 1/3 races we could win
+```
+  We think this strategy is good since the money we gain is positive and in over 1/3 races we could win.
 
 ## 6 Visualization
 ### 6.1 Line Chart of Recent Racing Result
 @import "plot/Figure_1.png"
 @import "plot/Figure_2.png"
+Both horses are not in stable competition status.
 ### 6.2 Scatter Plot of Win Rate and Number of Wins
 @import "plot/Figure_3.png"
+We think the best horse is MAURICE and best jockey is J Moeria because they get both high winning rate and wining number
 
 ### 6.3 Pie Chart of the Draw Bias Effect
 
 @import "plot/Figure_4.png"
+We can see that low draw has some advantages as it is closer to the final distination.
+
 ### 6.4 Bar Chart of the Feature Importances
 @import "plot/Figure_5.png"
+
+We find that the three most important features are declared weight, win_odds and the horse.
+
 ### 6.5 Visualize SVM
 @import "plot/Figure_6.png"
+
+The points are separated good by the SVM, but the chart is not perfect as we only use 2 dimensions.
